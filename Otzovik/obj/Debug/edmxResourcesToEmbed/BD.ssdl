@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище FeerSSQModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="CoursesId" />
+    </Key>
+    <Property Name="CoursesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="numberOfReviews" Type="int" />
+    <Property Name="courseDescription" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userLogin" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="userNumber" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="UsersCourses">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="CoursesId" />
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CoursesId" Type="int" Nullable="false" />
+    <Property Name="CourseRate" Type="float" Nullable="false" />
+    <Property Name="ReviewId" Type="int" Nullable="false" />
+    <Property Name="Reviews" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK__UsersCour__Cours__671F4F74">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="UsersCourses" Type="Self.UsersCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CoursesId" />
+      </Principal>
+      <Dependent Role="UsersCourses">
+        <PropertyRef Name="CoursesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersCour__UserI__662B2B3B">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersCourses" Type="Self.UsersCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersCourses">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище FeerSSQModelContainer">
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersCourses" EntityType="Self.UsersCourses" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__UsersCour__Cours__671F4F74" Association="Self.FK__UsersCour__Cours__671F4F74">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="UsersCourses" EntitySet="UsersCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersCour__UserI__662B2B3B" Association="Self.FK__UsersCour__UserI__662B2B3B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersCourses" EntitySet="UsersCourses" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

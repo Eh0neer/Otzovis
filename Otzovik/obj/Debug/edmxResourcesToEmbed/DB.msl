@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище FeerSSQModelContainer" CdmEntityContainer="FeerSSQEntities">
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="FeerSSQModel.Courses">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="CoursesId" ColumnName="CoursesId" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="numberOfReviews" ColumnName="numberOfReviews" />
+          <ScalarProperty Name="courseDescription" ColumnName="courseDescription" />
+          <ScalarProperty Name="courseRate" ColumnName="courseRate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="FeerSSQModel.Reviews">
+        <MappingFragment StoreEntitySet="Reviews">
+          <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+          <ScalarProperty Name="Review" ColumnName="Review" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FeerSSQModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userNumber" ColumnName="userNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UsersCourses" TypeName="FeerSSQModel.UsersCourses" StoreEntitySet="UsersCourses">
+      <EndProperty Name="Courses">
+        <ScalarProperty Name="CoursesId" ColumnName="CoursesId" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsersReviews" TypeName="FeerSSQModel.UsersReviews" StoreEntitySet="UsersReviews">
+      <EndProperty Name="Reviews">
+        <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,61 @@
+﻿<Window x:Class="Otzovik.Reviewss"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Otzovik"
+        mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Reviewss" Height="650" Width="1254" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#1d222c" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="NameCourseTbx" FontSize="25" Background="Transparent" Grid.Row="1" Grid.Column="1" Width="400" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0"/>
+        <TextBox x:Name="OtzwTbx" Grid.Row="2" Grid.Column="1" Width="650" Height="40" FontSize="20" HorizontalAlignment="Left"/>
+        <TextBlock Text="Ваш отзыв:" Foreground="White" FontSize="25" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,25,0"/>
+        <TextBox x:Name="RateTbx" Grid.Row="3" Grid.Column="1" Width="60" Height="40" FontSize="20" HorizontalAlignment="Left"/>
+        <TextBlock Text="Рейтинг:" Foreground="White" FontSize="25" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,25,0"/>
+        <Label x:Name="Labl1" Height="40" Width="200" HorizontalAlignment="Left" Margin="130,0,0,0" Grid.Row="1" Grid.Column="1" Foreground="White" Content="{DynamicResource txt}" FontSize="25" FontFamily="Arial"/>
+
+        <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Row="4" Grid.Column="1"  Width="200" HorizontalAlignment="Right" Content="Сохранить" FontFamily="Arial" FontSize="20"/>
+        <Button x:Name="BackBtn" Click="BackBtn_Click" Grid.Row="4" Width="200" HorizontalAlignment="Left" Content="Назад" FontFamily="Arial" FontSize="20"/>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid Name="ToolBar" Grid.Row="0" Grid.Column="1">
+                <Polygon Fill="White" Opacity="0.3" 
+                     Points="107,0,
+                     115, 7,
+                     249, 7
+                     257, 0" Margin="0,0, 555, 0" HorizontalAlignment="Right"/>
+                <Border MouseDown="Border_MouseDown" Background="Transparent">
+                    <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                        <Button Name="MinBtn" Width="20" Height="20"
+                            Content="___" Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Margin="0,0,0,3"
+                            Click="MinBtn_Click"/>
+                        <Button Name="CloseBtn" Width="20" Height="20"
+                            Content="╳" Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="CloseBtn_Click"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

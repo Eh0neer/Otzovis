@@ -1,0 +1,62 @@
+﻿<Window x:Class="Otzovik.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Otzovik"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="1195" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#1d222c" ResizeMode="NoResize" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Border BorderThickness="2" CornerRadius="2">
+                <TextBox x:Name="FiltrTextBox" Height="25" Width="1060" HorizontalAlignment="Right" TextChanged="FiltrTextBox_TextChanged" Margin="0, 0, 40, 0" FontSize="20" FontFamily="Arial"/>
+            </Border>
+        </StackPanel>
+        <Border Grid.Row="2" Grid.Column="2" BorderThickness="2" CornerRadius="2">
+            <DataGrid x:Name="MainDataGrid" FontSize="16" FontFamily="Arial" Background="#100e1b" IsReadOnly="True">
+            </DataGrid>
+        </Border>
+        <Button Content="Отзывы" Grid.Row="3" Width="200" FontSize="20" Name="OtzwBtn" Click="OtzwBtn_Click" HorizontalAlignment="Left"/>
+        <Button Name="AddNewCourseBtn" Click="AddNewCourseBtn_Click" Width="200" Content="Добавить курс" FontSize="20" FontFamily="Arial" HorizontalAlignment="Right" Margin="0, 0, 25, 0" Grid.Row="3" Grid.Column="1"/>
+        <TextBlock  HorizontalAlignment="Left" Text="Поиск: " Grid.Row="1" Grid.Column="1" FontSize="20" FontFamily="Intro" Foreground="White" Margin="8,4,0,0"/>
+    <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Name="ToolBar" Grid.Row="0" Grid.Column="1">
+            <Polygon Fill="White" Opacity="0.3" 
+                     Points="107,0,
+                     115, 7,
+                     249, 7
+                     257, 0" Margin="0,0, 555, 0" HorizontalAlignment="Right"/>
+            <Border MouseDown="Border_MouseDown" Background="Transparent">
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Width="20" Height="20"
+                            Content="___" Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Margin="0,0,0,3"
+                            Click="Button_Click"/>
+                    <Button Width="20" Height="20"
+                            Content="╳" Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="CloseBtn_Click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,11 @@
+﻿<Application x:Class="Otzovik.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Otzovik" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="Auth.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <sys:String x:Key="txt"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

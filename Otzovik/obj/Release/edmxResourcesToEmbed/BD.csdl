@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FeerSSQModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="CoursesId" />
+    </Key>
+    <Property Name="CoursesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="numberOfReviews" Type="Int32" />
+    <Property Name="courseDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UsersCourses" Relationship="Self.FK__UsersCour__Cours__671F4F74" FromRole="Courses" ToRole="UsersCourses" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userLogin" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UsersCourses" Relationship="Self.FK__UsersCour__UserI__662B2B3B" FromRole="Users" ToRole="UsersCourses" />
+  </EntityType>
+  <EntityType Name="UsersCourses">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="CoursesId" />
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CoursesId" Type="Int32" Nullable="false" />
+    <Property Name="CourseRate" Type="Double" Nullable="false" />
+    <Property Name="ReviewId" Type="Int32" Nullable="false" />
+    <Property Name="Reviews" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__UsersCour__Cours__671F4F74" FromRole="UsersCourses" ToRole="Courses" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__UsersCour__UserI__662B2B3B" FromRole="UsersCourses" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK__UsersCour__Cours__671F4F74">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="UsersCourses" Type="Self.UsersCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CoursesId" />
+      </Principal>
+      <Dependent Role="UsersCourses">
+        <PropertyRef Name="CoursesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersCour__UserI__662B2B3B">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersCourses" Type="Self.UsersCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersCourses">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FeerSSQEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Courses" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="UsersCourses" EntityType="Self.UsersCourses" />
+    <AssociationSet Name="FK__UsersCour__Cours__671F4F74" Association="Self.FK__UsersCour__Cours__671F4F74">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="UsersCourses" EntitySet="UsersCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersCour__UserI__662B2B3B" Association="Self.FK__UsersCour__UserI__662B2B3B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersCourses" EntitySet="UsersCourses" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
